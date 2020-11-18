@@ -1,28 +1,65 @@
 import React, { Component } from 'react';
+import SignUp from './SignUp';
+import Confirmation from './Confirmation';
 
 export default  class Form extends Component {
-    render() {
-        return (
-            <div className="form-wrapper">
-                <h2>Let's Sign Up</h2>
-                <p className="help-text">Use the form below to sign up for this super awesome service. You're only a few steps away!</p>
-                <form className="signup-form">
-                    {/* First Name */}
-                    <label for="signup-form-first-name">First Name</label>
-                    <input id="signup-form-first-name" type="text" required aria-required="true"></input>
+  constructor(props) {
+    super(props);
+    // Set up the initial input values.
+    this.state = {
+      step: 1,
+      firstName: '',
+      email: '',
+      password: '',
+    };
 
-                    {/* Email Address */}
-                    <label for="signup-form-email">Email Address</label>
-                    <input id="signup-form-email" type="email" required aria-required="true"></input>
+    // Handle the submission event.
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-                    {/* Password */}
-                    <label for="signup-form-password">Password</label>
-                    <input id="signup-form-password" type="password" minLength="8" required aria-required="true"></input>
+  // Iterate the step counter on submit.
+  nextStep = () => {
+    const {step} = this.state;
+    this.setState({
+      step: step +1,
+    });
+  }
 
-                    {/* Submit */}
-                    <input type="submit" value="Sign Up"></input>
-                </form>
-            </div>
-        );
+  // Set the state values on submit.
+  handleChange = event => {
+    const {name, value} = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  // Determine which step we are on and return the correct component.
+  renderSwitch = (step, values) => {
+    switch (step) {
+      case 1:
+        return <SignUp nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+
+      case 2:
+        return <Confirmation values={values} />
+
+      default:
+        break;
     }
+  }
+
+  render() {
+    // Set up the render data.
+    const {step} = this.state;
+    const {firstName, email, password} = this.state;
+    const values = {firstName, email, password};
+
+    return (
+      <div className="form-wrapper">
+        <form className="signup-form">
+          {/* Call the switch function to get the correct component to render. */}
+          {this.renderSwitch(step, values)}
+        </form>
+      </div>
+    );
+  }
 }
