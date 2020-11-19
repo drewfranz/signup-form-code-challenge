@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 
 export default class Confirmation extends Component {
-    signIn = () => {
-        alert("Congrats! You've signed in!");
-    }
-
     render() {
+        // Get the submited values so we can render them.
         const {values: {firstName, email}} = this.props;
 
         return(
@@ -15,7 +12,7 @@ export default class Confirmation extends Component {
                 </h2>
                 <p>You have been registered for this awesome service. Please check your email listed below for instructions.</p>
                 <p className="registered-email">{email}</p>
-                <button className="btn-danger rounded-lg p-2 px-4 float-right border-0" onClick={this.signIn}>Sign In</button>
+                <input type="submit" value="Sign In" className="btn-danger rounded-lg p-2 px-4 float-right border-0" />
             </div>
         );
     }

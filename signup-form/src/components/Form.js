@@ -12,10 +12,46 @@ export default  class Form extends Component {
       firstName: '',
       email: '',
       password: '',
+      errors: {},
     };
 
     // Handle the submission event.
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  validate = () => {
+    // Get the current values.
+    const {firstName, email, password} = this.state;
+    const values = {firstName, email, password};
+    // Set the email regex pattern.
+    const pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    // Initialize some values.
+    let errors = {};
+    let isValid = true;
+
+    // Check each value submitted.
+    Object.entries(values).forEach(([key, val]) => {
+      // If no value, set generic error.
+      if (val === '') {
+        isValid = false;
+        errors[key] = "Please enter a valid input.";
+      } else if (key === 'email') {
+        // If the email is set, check if the string is a valid email pattern. If not, set email specific error.
+        if (!pattern.test(val)) {
+          isValid = false;
+          errors["email"] = "Please enter valid email address.";
+        }
+      }
+    });
+
+    // Set the errors created.
+    this.setState({
+      errors: errors,
+    });
+
+    // Return bool of if valid.
+    return isValid;
   }
 
   // Iterate the step counter on submit.
@@ -30,18 +66,29 @@ export default  class Form extends Component {
   handleChange = event => {
     const {name, value} = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
+  // I'm not submitting this form to anything, so just show an alert if successful.
+  handleSubmit = event => {
+    event.preventDefault();
+    alert("Congrats! You've signed in!");
+  }
+
   // Determine which step we are on and return the correct component.
-  renderSwitch = (step, values) => {
+  renderSwitch = (step, values, errors) => {
     switch (step) {
       case 1:
-        return <SignUp nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+        return <SignUp
+                  nextStep={this.nextStep}
+                  validate={this.validate}
+                  handleChange={this.handleChange}
+                  values={values}
+                  errors={errors} />;
 
       case 2:
-        return <Confirmation values={values} />
+        return <Confirmation values={values} />;
 
       default:
         break;
@@ -50,14 +97,15 @@ export default  class Form extends Component {
 
   render() {
     // Set up the render data.
-    const {step} = this.state;
-    const {firstName, email, password} = this.state;
+    const {step, firstName, email, password, errors} = this.state;
     const values = {firstName, email, password};
 
     return (
-      <form className="container">
+      <form
+        className="container"
+        onSubmit={this.handleSubmit}>
         {/* Call the switch function to get the correct component to render. */}
-        {this.renderSwitch(step, values)}
+        {this.renderSwitch(step, values, errors)}
       </form>
     );
   }

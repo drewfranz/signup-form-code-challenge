@@ -19,6 +19,7 @@
     font-weight: 700;
 }
 
-.sign-up button {
+.sign-up button,
+.confirmation input[type=submit] {
     font-weight: 700;;
 }
