@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignUp from './SignUp';
 import Confirmation from './Confirmation';
+import './Form.css';
 
 export default  class Form extends Component {
   constructor(props) {
@@ -54,12 +55,10 @@ export default  class Form extends Component {
     const values = {firstName, email, password};
 
     return (
-      <div className="form-wrapper">
-        <form className="signup-form">
-          {/* Call the switch function to get the correct component to render. */}
-          {this.renderSwitch(step, values)}
-        </form>
-      </div>
+      <form className="container">
+        {/* Call the switch function to get the correct component to render. */}
+        {this.renderSwitch(step, values)}
+      </form>
     );
   }
 }

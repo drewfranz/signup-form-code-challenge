@@ -1,0 +1,24 @@
+.sign-up,
+.confirmation {
+    width: 90%;
+}
+
+@media only screen and (min-width: 640px) {
+    .sign-up,
+    .confirmation {
+        width: 500px;
+    }
+}
+
+.sign-up .header,
+.confirmation .header {
+    margin-bottom: 1.5rem;
+}
+
+.sign-up-header-emphasis {
+    font-weight: 700;
+}
+
+.sign-up button {
+    font-weight: 700;;
+}
