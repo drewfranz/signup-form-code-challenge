@@ -25,6 +25,7 @@ export default class SignUp extends Component {
         </h2>
         <p className="help-text">Use the form below to sign up for this super awesome service. You're only a few steps away!</p>
         <fieldset className="sign-up-fields">
+          <legend hidden>Your registration information</legend>
           {/* First Name */}
           <label htmlFor="signup-form-first-name">First Name</label>
           <input className={errors.firstName ? 'error' : ''} name="firstName" id="signup-form-first-name" type="text" required aria-required="true" value={this.props.firstName} onChange={this.props.handleChange}></input>
