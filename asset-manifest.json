@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/signup-form-code-challenge/static/css/main.39c419fa.chunk.css",
+    "main.js": "/signup-form-code-challenge/static/js/main.36c03abc.chunk.js",
+    "main.js.map": "/signup-form-code-challenge/static/js/main.36c03abc.chunk.js.map",
+    "runtime-main.js": "/signup-form-code-challenge/static/js/runtime-main.d4135f4f.js",
+    "runtime-main.js.map": "/signup-form-code-challenge/static/js/runtime-main.d4135f4f.js.map",
+    "static/js/2.fce0b776.chunk.js": "/signup-form-code-challenge/static/js/2.fce0b776.chunk.js",
+    "static/js/2.fce0b776.chunk.js.map": "/signup-form-code-challenge/static/js/2.fce0b776.chunk.js.map",
+    "static/js/3.846a73ce.chunk.js": "/signup-form-code-challenge/static/js/3.846a73ce.chunk.js",
+    "static/js/3.846a73ce.chunk.js.map": "/signup-form-code-challenge/static/js/3.846a73ce.chunk.js.map",
+    "index.html": "/signup-form-code-challenge/index.html",
+    "static/css/main.39c419fa.chunk.css.map": "/signup-form-code-challenge/static/css/main.39c419fa.chunk.css.map",
+    "static/js/2.fce0b776.chunk.js.LICENSE.txt": "/signup-form-code-challenge/static/js/2.fce0b776.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4135f4f.js",
+    "static/js/2.fce0b776.chunk.js",
+    "static/css/main.39c419fa.chunk.css",
+    "static/js/main.36c03abc.chunk.js"
+  ]
+}
